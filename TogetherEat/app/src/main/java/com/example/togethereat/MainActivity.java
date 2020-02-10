@@ -9,8 +9,6 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.example.togethereat.Glide.GlideActivity;
-
 public class MainActivity extends AppCompatActivity {
 
     private final int GET_GALLERY_IMAGE = 200;

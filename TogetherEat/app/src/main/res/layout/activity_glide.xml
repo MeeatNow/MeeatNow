@@ -22,7 +22,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".Glide.GlideActivity">
+    tools:context=".GlideActivity">
     <androidx.recyclerview.widget.RecyclerView
 
         android:layout_above="@+id/together_button"

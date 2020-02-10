@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">TogetherEat</string>
     <string name="list_title">title</string>
+    <string name="facebook_app_id">220333849143124</string>
+    <string name="fb_login_protocol_scheme">fb220333849143124</string>
+
 </resources>

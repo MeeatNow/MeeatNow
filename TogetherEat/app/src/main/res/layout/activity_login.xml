@@ -4,20 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GoogleLogin.LoginActivity">
+    tools:context=".LoginActivity">
+
 
     <com.google.android.gms.common.SignInButton
 
         android:id="@+id/sign_in_google_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
+
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/login_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center"/>
+
+    <Button
+        android:id="@+id/main_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        />
-<Button
-    android:onClick="goToMain"
-    android:text="main"
-    android:id="@+id/main_button"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"/>
+        android:onClick="goToMain"
+        android:text="main" />
 
 </FrameLayout>

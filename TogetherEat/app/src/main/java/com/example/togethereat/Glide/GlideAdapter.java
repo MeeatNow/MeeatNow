@@ -15,12 +15,12 @@ import com.example.togethereat.R;
 
 import java.util.ArrayList;
 
-class GlideAdapter extends RecyclerView.Adapter<GlideAdapter.ViewHolder> {
+public class GlideAdapter extends RecyclerView.Adapter<GlideAdapter.ViewHolder> {
 
     private Context mContext;
     private ArrayList<GlideDTO> mGlidesData;
 
-    GlideAdapter(Context context, ArrayList<GlideDTO> glidesData) {
+    public GlideAdapter(Context context, ArrayList<GlideDTO> glidesData) {
         this.mContext = context;
         this.mGlidesData = glidesData;
     }
@@ -56,6 +56,7 @@ class GlideAdapter extends RecyclerView.Adapter<GlideAdapter.ViewHolder> {
         // Glide실행하는 부분
         void bindTo(GlideDTO currentGlideDTO) {
             Glide.with(mContext).load(currentGlideDTO.getimageURL())
+                    .fitCenter()
                     .error(R.drawable.ic_launcher_background)
                     .into(glideImage);
         }

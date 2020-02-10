@@ -1,4 +1,4 @@
-package com.example.togethereat.GoogleLogin;
+package com.example.togethereat.Google;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,16 +11,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.togethereat.MainActivity;
+import com.example.togethereat.LoginActivity;
 import com.example.togethereat.R;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
-import static com.example.togethereat.GoogleLogin.LoginActivity.googleSignInClient;
+import static com.example.togethereat.LoginActivity.googleSignInClient;
 
-public class ProfileActivity extends AppCompatActivity {
+public class GoogleProfileActivity extends AppCompatActivity {
     public static final String GOOGLE_ACCOUNT = "google_account";
     private TextView profileName, profileEmail;
     private ImageView profileImage;
@@ -41,7 +40,7 @@ public class ProfileActivity extends AppCompatActivity {
                 googleSignInClient.signOut().addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        Intent intent=new Intent(ProfileActivity.this,LoginActivity.class);
+                        Intent intent=new Intent(GoogleProfileActivity.this, LoginActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
                     }

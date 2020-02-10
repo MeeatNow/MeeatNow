@@ -1,4 +1,4 @@
-package com.example.togethereat.Glide;
+package com.example.togethereat;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,7 +9,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.togethereat.R;
+import com.example.togethereat.Glide.GlideAdapter;
+import com.example.togethereat.Glide.GlideDTO;
 
 import java.util.ArrayList;
 

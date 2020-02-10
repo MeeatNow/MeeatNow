@@ -1,6 +1,6 @@
 package com.example.togethereat.Glide;
 
-class GlideDTO {
+public class GlideDTO {
 
     private final String imageURL;
 
