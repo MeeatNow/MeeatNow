@@ -2,6 +2,7 @@ package com.sejong.eatnow.web.dto;
 
 import com.sejong.eatnow.domain.loby.Loby;
 import com.sejong.eatnow.domain.location.Location;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -30,5 +31,15 @@ public class LobyRequestDto {
                 .location(location)
                 .meetingDate(meetingDate)
                 .build();
+    }
+
+    @Builder
+    public LobyRequestDto(String title, String openLink, String hostName,
+                          LocalDate meetingDate, LocationDto locationDto) {
+        this.title = title;
+        this.openLink = openLink;
+        this.hostName = hostName;
+        this.meetingDate = meetingDate;
+        this.locationDto = locationDto;
     }
 }
