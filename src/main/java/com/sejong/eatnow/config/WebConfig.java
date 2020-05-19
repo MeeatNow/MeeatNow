@@ -18,6 +18,8 @@ public class WebConfig implements WebMvcConfigurer {
                         HttpMethod.POST.name(),
                         HttpMethod.PUT.name(),
                         HttpMethod.DELETE.name())
-                .allowCredentials(false);
+                .allowCredentials(false)
+                .allowedHeaders("Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With")
+                .maxAge(200);
     }
 }
