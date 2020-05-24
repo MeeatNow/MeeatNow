@@ -28,8 +28,8 @@ public class LobyService {
     public void insert(LobyRequestDto dto) throws Exception {
         Loby target = dto.toEntity();
         LocationDto locationDto = dto.getLocationDto();
-        Long longitude = locationDto.getLongitude();
-        Long latitude = locationDto.getLatitude();
+        Double longitude = locationDto.getLongitude();
+        Double latitude = locationDto.getLatitude();
 
         /*** 여기 fetch조인으로 해결할 수도 있을것같음. querydsl써서 ***/
         Optional<Location> location = locationRepository.findByLatitudeAndLongitude(latitude,longitude); //latit,longit순

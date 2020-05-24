@@ -22,17 +22,17 @@ public class Location {
     private Long id;
 
     @Column(name = "LATIT", nullable = false)
-    private Long latitude;
+    private Double latitude;
 
     @Column(name = "LONGIT", nullable = false)
-    private Long longitude;
+    private Double longitude;
 
     @JsonBackReference
     @OneToMany(mappedBy = "location", fetch = FetchType.LAZY)
     private List<Loby> lobies = new ArrayList<>();
 
     @Builder
-    public Location(Long latitude, Long longitude) {
+    public Location(Double latitude, Double longitude) {
         this.latitude = latitude;
         this.longitude = longitude;
     }
