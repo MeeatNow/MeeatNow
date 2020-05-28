@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LocationDto {
-    private Long latitude;
-    private Long longitude;
+    private Double latitude;
+    private Double longitude;
 
     public Location toEntity(){
         return Location.builder()
