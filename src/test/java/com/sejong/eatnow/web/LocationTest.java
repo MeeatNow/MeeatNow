@@ -25,7 +25,7 @@ public class LocationTest {
     @Test
     @Transactional
     public void isSave() {
-        LocationDto dto = new LocationDto(111.1, 222.3);
+        LocationDto dto = new LocationDto(111L, 222L);
         try {
             repo.saveAndFlush(dto.toEntity());
             log.info("saved successfully....");

@@ -6,5 +6,5 @@ import java.util.Optional;
 
 public interface LocationRepository extends JpaRepository<Location, Long> {
 
-    public Optional<Location> findByLatitudeAndLongitude(Double latitude, Double longitude);
+    public Optional<Location> findByLatitudeAndLongitude(Long latitude, Long longitude);
 }
