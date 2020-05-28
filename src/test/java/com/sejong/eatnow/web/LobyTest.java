@@ -35,10 +35,10 @@ public class LobyTest {
                 .openLink("http://open-55")
                 .location(Location.builder()
 //                        .id(1L)  --> tx rollback-error도 이것때문에 생긴다.
-                        .longitude(11.345)
-                        .latitude(222.433)
+                        .longitude(1111L)
+                        .latitude(2222L)
                         .build())
-                .meetingDate(LocalDate.of(2020, 3, 2))
+                .meetingDate(LocalDate.of(2020, 3, 02))
                 .build();
         try {
             repo.saveAndFlush(loby);
