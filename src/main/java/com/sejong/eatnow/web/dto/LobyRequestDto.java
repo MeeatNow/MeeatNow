@@ -18,11 +18,11 @@ public class LobyRequestDto {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate meetingDate;
-    private LocationDto locationDto; //locationDto로 수정
+    private Double latitude;
+    private Double longitude;
 
     public Loby toEntity() {
-        Location location = new Location(locationDto.getLatitude(),
-                locationDto.getLongitude());
+        Location location = new Location(latitude,longitude);
         return Loby.builder()
                 .title(title)
                 .hostName(hostName)

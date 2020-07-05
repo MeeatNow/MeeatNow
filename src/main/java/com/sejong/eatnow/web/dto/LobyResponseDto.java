@@ -16,18 +16,20 @@ public class LobyResponseDto {
     private String title;
     private String hostName;
     private String openLink;
-    @JsonManagedReference
-    private Location location;
+    private Double latitude;
+    private Double longitude;
     private LocalDate meetingDate;
 
     @Builder
-    public LobyResponseDto(Long id, String title, String hostName, String openLink, Location location,
+    public LobyResponseDto(Long id, String title, String hostName, String openLink,
+                           Location location,
                            LocalDate meetingDate) {
         this.id = id;
         this.title = title;
         this.hostName = hostName;
         this.openLink = openLink;
-        this.location = location;
+        this.latitude = location.getLatitude();
+        this.longitude = location.getLongitude();
         this.meetingDate = meetingDate;
     }
 }

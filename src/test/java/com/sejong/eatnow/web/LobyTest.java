@@ -4,7 +4,6 @@ import com.sejong.eatnow.domain.loby.Loby;
 import com.sejong.eatnow.domain.loby.LobyRepository;
 import com.sejong.eatnow.domain.location.Location;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,9 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
+import java.util.List;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
@@ -27,7 +25,6 @@ public class LobyTest {
     private LobyRepository repo;
 
     @Test
-    @Transactional
     public void insert_Loby() {
         Loby loby = Loby.builder()
                 .title("toona party")
@@ -38,14 +35,21 @@ public class LobyTest {
                         .longitude(11.345)
                         .latitude(222.433)
                         .build())
-                .meetingDate(LocalDate.of(2020, 3, 2))
+//                .meetingDateTime(LocalDate.of(2020, 3, 2))
                 .build();
         try {
             repo.saveAndFlush(loby);
             log.info("saved loby successfully.......");
         } catch (Exception e) {
-            log.info("saving loby failed......"+ e.getMessage());
+            log.info("saving loby failed......" + e.getMessage());
         }
+        모든로비_날짜시간_조회_테스트();
+    }
 
+    public void 모든로비_날짜시간_조회_테스트() {
+        List<Loby> lobies = repo.findAllByDesc();
+        for (Loby loby : lobies) {
+            log.info("Id: " + loby.getId() + ", 날짜시간: " + loby.getMeetingDate());
+        }
     }
 }

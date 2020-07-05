@@ -5,6 +5,7 @@ import com.sejong.eatnow.domain.user.User;
 import com.sejong.eatnow.web.dto.LobyRequestDto;
 import com.sejong.eatnow.web.dto.LobyResponseDto;
 import lombok.*;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -37,18 +38,22 @@ public class Loby {
 
 
     @Setter
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "LOC_ID")
     private Location location;
 
     @ManyToMany(mappedBy = "lobies", cascade = CascadeType.ALL)
     private List<User> users = new ArrayList<>();
 
+    @Transactional
     public void update(LobyRequestDto dto) {
         this.title = dto.getTitle();
         this.hostName = dto.getHostName();
         this.openLink = dto.getOpenLink();
-        this.location = dto.getLocationDto().toEntity();
+        this.location = Location.builder()
+                .latitude(dto.getLatitude())
+                .longitude(dto.getLongitude())
+                .build();
         this.meetingDate = dto.getMeetingDate();
     }
 

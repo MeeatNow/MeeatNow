@@ -25,7 +25,7 @@ public class LobyController {
         ResponseEntity<String> entity = null;
         try {
             service.insert(dto);
-            entity = new ResponseEntity<>("success",HttpStatus.OK);
+            entity = new ResponseEntity<>("success", HttpStatus.OK);
             log.info("saving Loby successfully....");
         } catch (Exception e) {
             log.warning(e.getMessage());
@@ -41,7 +41,7 @@ public class LobyController {
 
         try {
             service.update(id, dto);
-            entity = new ResponseEntity<>("success",HttpStatus.OK);
+            entity = new ResponseEntity<>("success", HttpStatus.OK);
         } catch (NullPointerException e) {
             log.warning("loby update failed...." + e.getMessage());
             entity = new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
@@ -54,7 +54,7 @@ public class LobyController {
         ResponseEntity<LobyResponseDto> entity = null;
         try {
             LobyResponseDto dto = service.findById(id);
-            log.info("find " + id + ":" + dto.getHostName() + "," + dto.getOpenLink() + "," + dto.getTitle() + "," + dto.getId() + "," + dto.getLocation() + "," + dto.getMeetingDate());
+            log.info("find " + id + ":" + dto.getHostName() + "," + dto.getOpenLink() + "," + dto.getTitle() + "," + dto.getId() + "," + dto.getLatitude() + "," + dto.getLongitude() + "," + dto.getMeetingDate());
             entity = new ResponseEntity<>(dto, HttpStatus.OK);
         } catch (NullPointerException e) {
             log.warning("loby find failed...." + e.getMessage());
@@ -74,7 +74,7 @@ public class LobyController {
         ResponseEntity<String> entity = null;
         try {
             service.delete(id);
-            entity = new ResponseEntity<>("success",HttpStatus.OK);
+            entity = new ResponseEntity<>("success", HttpStatus.OK);
         } catch (NullPointerException e) {
             log.warning("delete loby failed...." + e.getMessage());
             entity = new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
