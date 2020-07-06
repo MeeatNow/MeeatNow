@@ -5,6 +5,7 @@ INSERT INTO user( EMAIL, NAME) VALUES ( "k@n","jung");
 INSERT INTO user( EMAIL, NAME) VALUES ( "jj@g","kim");
 INSERT INTO user( EMAIL, NAME) VALUES ( "ss4@d","lee");
 INSERT INTO user( EMAIL, NAME) VALUES ("mar@k","김마라탕");
+INSERT INTO user( EMAIL, NAME, PW) VALUES ( "admin@admin","ADMIN","admin");
 
 INSERT INTO loc( LATIT, LONGIT) VALUES (37.550276, 127.073182);
 INSERT INTO loc( LATIT, LONGIT) VALUES (37.541009, 127.079300);

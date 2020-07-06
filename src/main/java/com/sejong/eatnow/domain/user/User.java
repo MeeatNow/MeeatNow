@@ -28,6 +28,9 @@ public class User {
     @Column(name = "NAME", length = 20)
     private String name;
 
+    @Column(name = "PW", length= 20)
+    private String pw;
+
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "USER_LOBY",
             joinColumns = @JoinColumn(name = "USER_ID"),
@@ -40,9 +43,10 @@ public class User {
     }
 
     @Builder
-    public User(String email, String name) {
+    public User(String email, String name, String pw) {
         this.email = email;
         this.name = name;
+        this.pw = pw;
     }
 
 }

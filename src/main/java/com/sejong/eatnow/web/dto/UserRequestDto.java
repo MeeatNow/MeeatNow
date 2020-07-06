@@ -12,11 +12,13 @@ public class UserRequestDto {
 
     private String email;
     private String name;
+    private String pw;
 
     public User toEntity(){
         return User.builder()
                 .email(this.email)
                 .name(this.name)
+                .pw(this.pw)
                 .build();
     }
 

@@ -36,6 +36,23 @@ public class UserController {
         return entity;
     }
 
+    @PostMapping("/check/admin")
+    public ResponseEntity<String> checkAdmin(@RequestBody UserRequestDto dto){
+        log.info("check admin 진입");
+        String res = null;
+        ResponseEntity<String> entity = null;
+        try{
+            res = service.isAdmin(dto);
+            if(res.equals("yes"))
+                entity = new ResponseEntity<>("yes",HttpStatus.OK);
+            else
+                entity = new ResponseEntity<>("no", HttpStatus.OK);
+        } catch (NullPointerException e) {
+            entity = new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+
+        return entity;
+    }
     @PostMapping("/update/{id}")
     public ResponseEntity<String> update(@PathVariable Long id, @RequestBody UserRequestDto dto) {
         log.info("update (controller) 진입");

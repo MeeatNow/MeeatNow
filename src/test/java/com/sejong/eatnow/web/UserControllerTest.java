@@ -24,7 +24,7 @@ public class UserControllerTest {
     @Test
     public void cors_문제없이_유저등록() throws Exception {
         //given
-        UserRequestDto userDto = new UserRequestDto("y@an", "김와이");
+        UserRequestDto userDto = new UserRequestDto("y@an", "김와이","1234");
 
         //when,then
         mvc.perform(

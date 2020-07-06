@@ -25,7 +25,7 @@ public class UserTest {
 
     @Test
     public void isQuery_findByEmail() {
-        UserRequestDto test = new UserRequestDto("k@n", null);
+        UserRequestDto test = new UserRequestDto("k@n", "kim",null);
 
 
             User target = repo.findByEmail(test.getEmail())
@@ -48,7 +48,7 @@ public class UserTest {
 
     @Test
     public void isError_insert(){
-        UserRequestDto dto = new UserRequestDto("ss4@d","lee");
+        UserRequestDto dto = new UserRequestDto("ss4@d","lee",null);
         try {
             repo.saveAndFlush(dto.toEntity());
         } catch (Exception e)  //email 값이 유일성을 가지므로 중복되면 예외처리.
@@ -72,7 +72,7 @@ public class UserTest {
     @Test
     public void isError_update(){
         Long id = Integer.toUnsignedLong(1);
-        UserRequestDto dto = new UserRequestDto("jj@g","ja");
+        UserRequestDto dto = new UserRequestDto("jj@g","ja",null);
 
         User target = repo.findById(id).orElseThrow(
                 () -> new NullPointerException("찾는 유저가 없습니다."));

@@ -33,6 +33,17 @@ public class UserService {
         }
     }
 
+    public String isAdmin(UserRequestDto dto) {
+        String res = "no";
+        User user = repo.findByEmail(dto.getEmail()).orElseThrow(
+                () -> new NullPointerException("찾는 유저가 없습니다."));
+
+        if (user.getEmail().equals("admin@admin") && user.getPw().equals("admin")) {
+            res = "yes";
+        }
+        return res;
+    }
+
     @Transactional
     public void update(Long id, UserRequestDto dto) throws DataAccessException {
 
