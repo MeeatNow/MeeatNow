@@ -37,8 +37,7 @@ public class UserService {
         String res = "no";
         User user = repo.findByEmail(dto.getEmail()).orElseThrow(
                 () -> new NullPointerException("찾는 유저가 없습니다."));
-
-        if (user.getEmail().equals("admin@admin") && user.getPw().equals("admin")) {
+        if (dto.getEmail().equals(user.getEmail()) && dto.getPw().equals(user.getPw())) {
             res = "yes";
         }
         return res;
