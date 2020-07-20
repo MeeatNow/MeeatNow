@@ -5,6 +5,7 @@ import com.sejong.eatnow.web.dto.UserRequestDto;
 import com.sejong.eatnow.web.dto.UserResponseDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
+import org.json.simple.JSONObject;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -23,47 +24,80 @@ public class UserController {
 
     private final UserService service;
 
+    @PostMapping("/test")
+    public ResponseEntity<JSONObject> json_test() {
+
+        JSONObject json = new JSONObject();
+        ResponseEntity<JSONObject> entity = null;
+
+        json.put("response", "test..json type");
+        entity = new ResponseEntity<>(json, HttpStatus.OK);
+            /*
+            - 반환시 ResponseEntity<String>을 jsonObject로 바꾼게 차이가 있나? -> (((어쨋든 ResponseEntity껍데기는 필요)))
+            - 차이 없으면 JSONObject 안 만들고 그냥 string으로 "{/"response/", /"test/"}"하면 되는거 아닌가?
+             */
+
+        log.info(entity.toString());
+        return entity;
+    }
+
     @PostMapping("/insert")
     public ResponseEntity<String> insert(@RequestBody UserRequestDto dto) {
-        log.info("insert (controller) 진입: "+dto.getEmail()+", "+dto.getName());
+        log.info("insert (controller) 진입: " + dto.getEmail() + ", " + dto.getName());
+        JSONObject json = new JSONObject();
         ResponseEntity<String> entity = null;
         try {
             service.insert(dto);
-            entity = new ResponseEntity<>("success",HttpStatus.OK);
+            json.put("response", "success");
+            log.info(json.toJSONString());
+            entity = new ResponseEntity<>(json.toJSONString(), HttpStatus.OK);
         } catch (DataIntegrityViolationException e) {
-            entity = new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+            json.put("response", e.getMessage());
+            log.info(json.toJSONString());
+            entity = new ResponseEntity<>(json.toJSONString(), HttpStatus.BAD_REQUEST);
         }
+        log.info(entity.getBody());
         return entity;
     }
 
     @PostMapping("/check/admin")
-    public ResponseEntity<String> checkAdmin(@RequestBody UserRequestDto dto){
+    public ResponseEntity<String> checkAdmin(@RequestBody UserRequestDto dto) {
         log.info("check admin 진입");
         String res = null;
+        JSONObject json = new JSONObject();
         ResponseEntity<String> entity = null;
-        try{
+        try {
             res = service.isAdmin(dto);
-            if(res.equals("yes"))
-                entity = new ResponseEntity<>("yes",HttpStatus.OK);
-            else
-                entity = new ResponseEntity<>("no", HttpStatus.OK);
+            if (res.equals("yes")) {
+                json.put("response", "yes");
+                entity = new ResponseEntity<>(json.toJSONString(), HttpStatus.OK);
+            } else {
+                json.put("response", "no");
+                entity = new ResponseEntity<>(json.toJSONString(), HttpStatus.OK);
+            }
         } catch (NullPointerException e) {
-            entity = new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+            json.put("response", e.getMessage());
+            entity = new ResponseEntity<>(json.toJSONString(), HttpStatus.BAD_REQUEST);
         }
 
         return entity;
     }
+
     @PostMapping("/update/{id}")
     public ResponseEntity<String> update(@PathVariable Long id, @RequestBody UserRequestDto dto) {
         log.info("update (controller) 진입");
+        JSONObject json = new JSONObject();
         ResponseEntity<String> entity = null;
         try {
             service.update(id, dto);
-            entity = new ResponseEntity<>("success",HttpStatus.OK);
+            json.put("response", "success");
+            entity = new ResponseEntity<>(json.toJSONString(), HttpStatus.OK);
         } catch (NullPointerException e) {
-            entity = new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+            json.put("response", e.getMessage());
+            entity = new ResponseEntity<>(json.toJSONString(), HttpStatus.BAD_REQUEST);
         } catch (DataAccessException e) {
-            entity = new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+            json.put("response", e.getMessage());
+            entity = new ResponseEntity<>(json.toJSONString(), HttpStatus.BAD_REQUEST);
         }
         return entity;
     }
@@ -95,12 +129,15 @@ public class UserController {
     @PostMapping("/delete/{id}")
     public ResponseEntity<String> delete(@PathVariable Long id) {
         log.info("delete (controller) 진입");
+        JSONObject json = new JSONObject();
         ResponseEntity<String> entity = null;
         try {
             service.deleteById(id);
-            entity = new ResponseEntity<>("success",HttpStatus.OK);
+            json.put("response", "success");
+            entity = new ResponseEntity<>(json.toJSONString(), HttpStatus.OK);
         } catch (EmptyResultDataAccessException e) {
-            entity = new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+            json.put("response", e.getMessage());
+            entity = new ResponseEntity<>(json.toJSONString(), HttpStatus.BAD_REQUEST);
         }
         return entity;
     }
