@@ -28,7 +28,7 @@ public class User {
     @Column(name = "NAME", length = 20)
     private String name;
 
-    @Column(name = "PW", length= 20)
+    @Column(name = "PW", length = 20)
     private String pw;
 
     @ManyToMany(cascade = CascadeType.ALL)
@@ -37,9 +37,10 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "LOBY_ID"))
     private List<Loby> lobies = new ArrayList<>();
 
-    public void update(String email, String name) {
+    public void update(String email, String name, String pw) {
         this.email = email;
         this.name = name;
+        this.pw = pw;
     }
 
     @Builder

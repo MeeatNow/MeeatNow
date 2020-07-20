@@ -48,7 +48,7 @@ public class UserService {
 
         User target = repo.findById(id).orElseThrow(
                 () -> new NullPointerException("찾는 유저가 없습니다."));
-        target.update(dto.getEmail(), dto.getName());
+        target.update(dto.getEmail(), dto.getName(), dto.getPw());
     }
 
 
