@@ -77,7 +77,7 @@ public class UserTest {
         User target = repo.findById(id).orElseThrow(
                 () -> new NullPointerException("찾는 유저가 없습니다."));
         try {
-            target.update(dto.getEmail(), dto.getName());
+            target.update(dto.getEmail(), dto.getName(), dto.getPw());
             repo.saveAndFlush(target);
         } catch (DataIntegrityViolationException e)  //email 값이 유일성을 가지므로 중복되면 예외처리.
         {
