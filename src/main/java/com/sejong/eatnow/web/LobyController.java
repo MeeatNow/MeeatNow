@@ -5,6 +5,7 @@ import com.sejong.eatnow.web.dto.LobyRequestDto;
 import com.sejong.eatnow.web.dto.LobyResponseDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
+import org.json.simple.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,31 +21,36 @@ public class LobyController {
     private final LobyService service;
 
     @PostMapping("/insert")
-    public ResponseEntity<String> insert(@RequestBody LobyRequestDto dto) {
-
-        ResponseEntity<String> entity = null;
+    public ResponseEntity<JSONObject> insert(@RequestBody LobyRequestDto dto) {
+        JSONObject json = new JSONObject();
+        ResponseEntity<JSONObject> entity = null;
         try {
             service.insert(dto);
-            entity = new ResponseEntity<>("success", HttpStatus.OK);
+            json.put("response","success");
+            entity = new ResponseEntity<>(json, HttpStatus.OK);
             log.info("saving Loby successfully....");
         } catch (Exception e) {
             log.warning(e.getMessage());
-            entity = new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+            json.put("response",e.getMessage());
+            entity = new ResponseEntity<>(json, HttpStatus.BAD_REQUEST);
 
         }
         return entity;
     }
 
     @PostMapping("/update/{id}")
-    public ResponseEntity<String> update(@PathVariable Long id, @RequestBody LobyRequestDto dto) {
-        ResponseEntity<String> entity = null;
+    public ResponseEntity<JSONObject> update(@PathVariable Long id, @RequestBody LobyRequestDto dto) {
+        JSONObject json = new JSONObject();
+        ResponseEntity<JSONObject> entity = null;
 
         try {
             service.update(id, dto);
-            entity = new ResponseEntity<>("success", HttpStatus.OK);
+            json.put("response","success");
+            entity = new ResponseEntity<>(json, HttpStatus.OK);
         } catch (NullPointerException e) {
+            json.put("response", e.getMessage());
             log.warning("loby update failed...." + e.getMessage());
-            entity = new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+            entity = new ResponseEntity<>(json, HttpStatus.BAD_REQUEST);
         }
         return entity;
     }
@@ -70,14 +76,17 @@ public class LobyController {
     }
 
     @PostMapping("/delete/{id}")
-    public ResponseEntity<String> delete(@PathVariable Long id) {
-        ResponseEntity<String> entity = null;
+    public ResponseEntity<JSONObject> delete(@PathVariable Long id) {
+        JSONObject json = new JSONObject();
+        ResponseEntity<JSONObject> entity = null;
         try {
             service.delete(id);
-            entity = new ResponseEntity<>("success", HttpStatus.OK);
+            json.put("response", "success");
+            entity = new ResponseEntity<>(json, HttpStatus.OK);
         } catch (NullPointerException e) {
+            json.put("response", e.getMessage());
             log.warning("delete loby failed...." + e.getMessage());
-            entity = new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+            entity = new ResponseEntity<>(json, HttpStatus.BAD_REQUEST);
         }
         return entity;
     }
