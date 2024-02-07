@@ -30,5 +30,5 @@ Notion
 김하늬  [kimhanui](https://github.com/kimhanui)  
 이경은  [2kyung19](https://github.com/2kyung19)  
 이주현  [hhzzi02](https://github.com/hhzzi02)  
-이현주  [alro923](https://github.com/alro923)  
+이현주  [uhhyunjoo](https://github.com/uhhyunjoo)  
 주이식  [jkey20](https://github.com/jkey20)  
